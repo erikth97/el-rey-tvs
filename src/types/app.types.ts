@@ -1,6 +1,5 @@
 // Tipos principales de la aplicación
 export type AppStep = 'landing' | 'instructions' | 'selector' | 'camera' | 'loading' | 'result';
-
 export type VehicleId = 'king_deluxe_plus' | 'king_duramax_plus' | 'king_kargo';
 
 export interface Vehicle {
