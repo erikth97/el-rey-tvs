@@ -1,0 +1,35 @@
+{
+  "name": "el-rey-tvs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+     "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix",
+    "format": "prettier --write .",
+    "type-check": "astro check && tsc --noEmit",
+    "clean": "rm -rf dist .astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.8.0",
+    "preact": "^10.26.7",
+    "swiper": "^11.2.8",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^3.4.0"
+  }
+}
