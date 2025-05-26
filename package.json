@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-     "dev": "astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -15,11 +15,13 @@
     "clean": "rm -rf dist .astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/preact": "^4.1.0",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.8.0",
     "preact": "^10.26.7",
     "swiper": "^11.2.8",
+    "typescript": "^5.8.3",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
