@@ -1,0 +1,185 @@
+---
+// src/pages/instructions.astro
+---
+
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Instrucciones para el análisis de documentos con IA" />
+    <title>Instrucciones - Document AI</title>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                Instrucciones de Uso
+            </h1>
+            <p class="text-gray-600">Sigue estos pasos para obtener los mejores resultados</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="space-y-6 mb-12">
+            <!-- Step 1 -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold mr-4 flex-shrink-0">
+                        1
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Selecciona el tipo de documento</h3>
+                        <p class="text-gray-600 mb-4">Elige qué tipo de documento vas a analizar para optimizar el procesamiento:</p>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm">Identificaciones</span>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm">Facturas</span>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm">Recibos</span>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm">Documentos de texto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold mr-4 flex-shrink-0">
+                        2
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Captura el documento</h3>
+                        <p class="text-gray-600 mb-4">Toma una foto clara del documento siguiendo estas recomendaciones:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">✅ Buenas prácticas:</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Buena iluminación natural</li>
+                                    <li>• Documento completamente visible</li>
+                                    <li>• Foto nítida y enfocada</li>
+                                    <li>• Superficie plana</li>
+                                    <li>• Contraste adecuado</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">❌ Evitar:</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Sombras sobre el texto</li>
+                                    <li>• Imágenes borrosas</li>
+                                    <li>• Documentos doblados</li>
+                                    <li>• Reflejos de luz</li>
+                                    <li>• Texto cortado</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold mr-4 flex-shrink-0">
+                        3
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Procesamiento automático</h3>
+                        <p class="text-gray-600 mb-4">Nuestra IA analizará tu documento y extraerá la información relevante:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Reconocimiento de texto</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Extracción de datos</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Análisis inteligente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Notice -->
+        <div class="bg-green-50 border border-green-200 rounded-xl p-6 mb-8">
+            <div class="flex items-start">
+                <svg class="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                <div>
+                    <h4 class="font-semibold text-green-800 mb-2">Privacidad y Seguridad</h4>
+                    <p class="text-green-700 text-sm">
+                        Tus documentos se procesan de forma segura y no se almacenan en nuestros servidores. 
+                        La información se mantiene únicamente en tu dispositivo durante la sesión.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <button 
+                id="backButton"
+                class="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+            >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Volver al inicio
+            </button>
+            
+            <button 
+                id="continueButton"
+                class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+                Continuar
+                <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importar sistemas de navegación y storage
+        import { navigationManager } from '/src/utils/helpers/navigation.js';
+        import { storage } from '/src/utils/helpers/storage.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Guardar paso actual
+            storage.saveCurrentStep('instructions');
+
+            // Manejar navegación
+            document.getElementById('backButton')?.addEventListener('click', () => {
+                window.location.href = '/';
+            });
+
+            document.getElementById('continueButton')?.addEventListener('click', () => {
+                window.location.href = '/selector';
+            });
+
+            console.log('📋 Instructions page initialized');
+        });
+    </script>
+</body>
+</html>
