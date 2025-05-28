@@ -1,0 +1,52 @@
+---
+import ScreenLayout from '@/layout/ScreenLayout.astro';
+import { ASSETS_PATHS } from '../../utils/constants';
+---
+
+<ScreenLayout 
+  screenId="intro" 
+  backgroundColor="black"
+  nextScreen="instructions"
+>
+  <div class="text-center space-y-6 animate-fade-in-scale">
+    
+    <!-- Hero Image -->
+    <div class="mb-8">
+      <img 
+        src={ASSETS_PATHS.HERO_EL_REY} 
+        alt="El Rey TVS Hero" 
+        class="w-64 h-64 object-contain mx-auto"
+      />
+    </div>
+    
+    <!-- TVS Logo -->
+    <div class="mb-6">
+      <img 
+        src={ASSETS_PATHS.TVS_LOGO} 
+        alt="TVS Logo" 
+        class="h-12 mx-auto"
+      />
+    </div>
+    
+    <!-- Main Title -->
+    <div class="space-y-2">
+      <div class="text-hero text-brand">Así se ve un</div>
+      <div class="text-rey-title text-brand">REY</div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="flex justify-center space-x-4 mt-8">
+      <img src={ASSETS_PATHS.DECORATIVE.STAR_RED} alt="" class="w-8 h-8 animate-pulse-red" />
+      <img src={ASSETS_PATHS.DECORATIVE.CROWN} alt="" class="w-10 h-10" />
+      <img src={ASSETS_PATHS.DECORATIVE.STAR_BLUE} alt="" class="w-8 h-8 animate-pulse-blue" />
+    </div>
+    
+  </div>
+</ScreenLayout>
+
+<script>
+  // Auto-advance después de 2 segundos
+  setTimeout(() => {
+    window.location.href = '/screens/instructions';
+  }, 2000);
+</script>

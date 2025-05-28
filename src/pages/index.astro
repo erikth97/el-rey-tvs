@@ -1,19 +1,172 @@
 ---
-// Página temporal para verificar que todo funciona
+// src/pages/index.astro
 ---
 
 <html lang="es">
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>El Rey TVS - Setup</title>
-  </head>
-  <body>
-    <main>
-      <h1>El Rey TVS - Proyecto Inicializado</h1>
-      <p>Setup completo exitosamente</p>
-    </main>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="El Rey TVS - Webapp interactiva para generar imágenes personalizadas" />
+    <title>El Rey TVS - Así se ve un Rey</title>
+</head>
+<body class="bg-black min-h-screen overflow-hidden">
+    <div class="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen text-center">
+        
+        <!-- Hero Image -->
+        <div class="mb-8 animate-fade-in-scale">
+            <img 
+                src="/assets/images/hero-el-rey.png"
+                alt="El Rey TVS Hero"
+                class="w-64 h-64 object-contain mx-auto"
+            />
+        </div>
+        
+        <!-- TVS Logo -->
+        <div class="mb-6">
+            <img 
+                src="/assets/images/tvs-logo.png"
+                alt="TVS Logo"
+                class="h-12 mx-auto"
+            />
+        </div>
+        
+        <!-- Main Title -->
+        <div class="space-y-2 mb-8">
+            <div class="text-4xl md:text-6xl font-bold text-white">Así se ve un</div>
+            <div class="text-6xl md:text-8xl font-black text-red-500">REY</div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="flex justify-center space-x-6 mt-8">
+            <img 
+                src="/assets/decorative/star-red.png" 
+                alt="" 
+                class="w-8 h-8 animate-pulse-red" 
+            />
+            <img 
+                src="/assets/decorative/crown.png" 
+                alt="" 
+                class="w-12 h-12" 
+            />
+            <img 
+                src="/assets/decorative/star-blue.png" 
+                alt="" 
+                class="w-8 h-8 animate-pulse-blue" 
+            />
+        </div>
+
+        <!-- Additional decorative elements -->
+        <div class="absolute top-10 left-10">
+            <img 
+                src="/assets/decorative/flash-blue.png" 
+                alt="" 
+                class="w-6 h-6 animate-bounce" 
+            />
+        </div>
+        <div class="absolute top-20 right-16">
+            <img 
+                src="/assets/decorative/sign-yellow.png" 
+                alt="" 
+                class="w-8 h-8 animate-pulse" 
+            />
+        </div>
+        <div class="absolute bottom-20 left-20">
+            <img 
+                src="/assets/decorative/flash-red.png" 
+                alt="" 
+                class="w-6 h-6 animate-bounce delay-300" 
+            />
+        </div>
+        <div class="absolute bottom-16 right-12">
+            <img 
+                src="/assets/decorative/sign-blue.png" 
+                alt="" 
+                class="w-6 h-6 animate-pulse delay-500" 
+            />
+        </div>
+        
+    </div>
+
+    <script type="module">
+        // Importar sistemas de navegación y storage
+        import { navigationManager, setupAutoAdvance } from '/src/utils/helpers/navigation.js';
+        import { storage } from '/src/utils/helpers/storage.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar sesión
+            const sessionData = storage.initializeSession();
+            console.log('🚀 Sesión El Rey TVS iniciada:', sessionData.id);
+
+            // Verificar si es primera visita
+            if (storage.isFirstVisit()) {
+                console.log('👋 Primera visita a El Rey TVS detectada');
+                storage.markAsVisited();
+            }
+
+            // Limpiar datos de experiencias anteriores para empezar fresco
+            storage.clearSessionData();
+
+            // Configurar auto-advance después de 2 segundos
+            setupAutoAdvance('INTRO', 2000);
+
+            console.log('🏍️ El Rey TVS Intro initialized');
+        });
+    </script>
+
+    <style>
+        @keyframes fade-in-scale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-red {
+            0%, 100% {
+                opacity: 1;
+                filter: brightness(1);
+            }
+            50% {
+                opacity: 0.7;
+                filter: brightness(1.5);
+            }
+        }
+
+        @keyframes pulse-blue {
+            0%, 100% {
+                opacity: 1;
+                filter: brightness(1);
+            }
+            50% {
+                opacity: 0.7;
+                filter: brightness(1.2);
+            }
+        }
+
+        .animate-fade-in-scale {
+            animation: fade-in-scale 1s ease-out;
+        }
+
+        .animate-pulse-red {
+            animation: pulse-red 2s ease-in-out infinite;
+        }
+
+        .animate-pulse-blue {
+            animation: pulse-blue 2s ease-in-out infinite;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-500 {
+            animation-delay: 500ms;
+        }
+    </style>
+</body>
 </html>
