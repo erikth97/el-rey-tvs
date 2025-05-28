@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Importar fuentes custom */
+/* Fuentes custom verificadas y funcionando */
 @font-face {
   font-family: 'ChunkyRetro';
   src: url('/assets/fonts/Chunky-Retro-Demo.ttf') format('truetype');
@@ -27,9 +27,14 @@
   font-style: normal;
 }
 
+/* Fuentes de respaldo de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+
 /* Variables CSS custom */
 :root {
-  /* Colores de marca */
+  /* Colores de marca TVS */
   --color-tvs-red: #E31E24;
   --color-tvs-red-dark: #B71C1C;
   --color-tvs-red-light: #FF5252;
@@ -69,10 +74,10 @@
   --color-border-strong: #D1D5DB;
   --color-border-subtle: #F3F4F6;
   
-  /* Tipografía */
-  --font-display: 'ChunkyRetro', system-ui, sans-serif;
-  --font-body: 'SignLabeling', system-ui, sans-serif;
-  --font-alt: 'SingLabeling', system-ui, sans-serif;
+  /* Tipografía con fuentes custom funcionando */
+  --font-display: 'ChunkyRetro', 'Fredoka One', system-ui, sans-serif;
+  --font-body: 'SignLabeling', 'Oswald', system-ui, sans-serif;
+  --font-script: 'SingLabeling', 'Kalam', cursive;
   
   /* Escalas tipográficas fluidas */
   --text-hero: clamp(36px, 8vw, 48px);
@@ -157,20 +162,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utility classes específicas del proyecto */
+/* Utility classes específicas del proyecto TVS */
 .text-hero {
-  font-family: var(--font-display);
+  font-family: var(--font-script);
   font-size: var(--text-hero);
   line-height: var(--line-tight);
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+
+.text-rey-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 15vw, 80px);
+  line-height: 0.9;
+  font-weight: 900;
+  text-transform: uppercase;
   letter-spacing: -0.02em;
+  /* Efecto 3D como en el diseño original */
+  text-shadow: 
+    3px 3px 0px var(--color-gold-light),
+    6px 6px 0px var(--color-gold),
+    9px 9px 10px rgba(0,0,0,0.3);
 }
 
 .text-step-number {
   font-family: var(--font-display);
   font-size: var(--text-step);
   line-height: 1;
-  font-weight: bold;
+  font-weight: 900;
   text-align: center;
 }
 
@@ -178,38 +198,58 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-section);
   line-height: var(--line-tight);
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .text-vehicle-name {
   font-family: var(--font-display);
   font-size: var(--text-vehicle);
   line-height: var(--line-tight);
-  font-weight: bold;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .text-vehicle-description {
-  font-family: var(--font-body);
+  font-family: var(--font-script);
   font-size: var(--text-description);
   line-height: var(--line-normal);
   font-style: italic;
+  font-weight: 700;
 }
 
 .text-cta-button {
   font-family: var(--font-body);
   font-size: var(--text-button);
   line-height: 1;
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .text-body {
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: var(--line-normal);
+  font-weight: 400;
+}
+
+/* Clases de fuente directas */
+.font-chunky {
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+.font-sign {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.font-script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-style: italic;
 }
 
 /* Container system */
@@ -324,6 +364,24 @@ body {
   }
 }
 
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(227, 30, 36, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(227, 30, 36, 0);
+  }
+}
+
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(30, 64, 175, 0);
+  }
+}
+
 /* Animation utility classes */
 .animate-fade-in-up {
   animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
@@ -346,6 +404,14 @@ body {
 
 .animate-pulse-custom {
   animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s infinite;
+}
+
+.animate-pulse-blue {
+  animation: pulse-blue 2s infinite;
 }
 
 /* Transition utility classes */
@@ -374,13 +440,15 @@ body {
   border: none;
   border-radius: 50px;
   font-family: var(--font-body);
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   transition: var(--transition-colors), transform var(--duration-fast) var(--ease-out);
   touch-action: manipulation;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn-primary {
@@ -431,6 +499,29 @@ body {
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Efectos de texto especiales para TVS */
+.text-glow-red {
+  text-shadow: 0 0 10px var(--color-tvs-red), 0 0 20px var(--color-tvs-red), 0 0 30px var(--color-tvs-red);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px var(--color-tvs-blue), 0 0 20px var(--color-tvs-blue), 0 0 30px var(--color-tvs-blue);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 10px var(--color-gold), 0 0 20px var(--color-gold), 0 0 30px var(--color-gold);
+}
+
+.text-outline-white {
+  -webkit-text-stroke: 2px #FFFFFF;
+  text-stroke: 2px #FFFFFF;
+}
+
+.text-outline-black {
+  -webkit-text-stroke: 2px #000000;
+  text-stroke: 2px #000000;
 }
 
 /* Touch-friendly interactions */
