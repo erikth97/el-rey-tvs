@@ -1,0 +1,40 @@
+---
+// src/components/ui/ProgressIndicator.astro
+export interface Props {
+  currentStep: number;
+  totalSteps: number;
+  steps?: string[];
+}
+
+const { 
+  currentStep, 
+  totalSteps, 
+  steps = ['Intro', 'Instrucciones', 'Vehículo', 'Foto', 'Carga', 'Resultado']
+} = Astro.props;
+---
+
+<div class="progress-indicator bg-gray-900 rounded-full p-2">
+  <div class="flex items-center space-x-2">
+    {Array.from({ length: totalSteps }, (_, i) => (
+      <div 
+        class={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+          i + 1 <= currentStep 
+            ? 'bg-brand text-white' 
+            : i + 1 === currentStep + 1 
+              ? 'bg-gray-700 text-accent border-2 border-accent' 
+              : 'bg-gray-800 text-gray-500'
+        }`}
+        title={steps[i] || `Paso ${i + 1}`}
+      >
+        {i + 1}
+      </div>
+    ))}
+  </div>
+  
+  <!-- Progress Text -->
+  <div class="text-center mt-2">
+    <span class="text-xs text-muted">
+      Paso {currentStep} de {totalSteps}
+    </span>
+  </div>
+</div>

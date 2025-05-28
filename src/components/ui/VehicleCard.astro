@@ -1,0 +1,54 @@
+---
+// src/components/ui/VehicleCard.astro
+export interface Props {
+  vehicle: {
+    id: string;
+    name: string;
+    description: string;
+    image: string;
+    features: string[];
+  };
+  selected?: boolean;
+  onSelect?: string;
+}
+
+const { vehicle, selected = false, onSelect } = Astro.props;
+---
+
+<div 
+  class={`vehicle-card bg-gray-900 rounded-lg p-6 cursor-pointer transition-all duration-300 border-2 ${selected ? 'border-brand' : 'border-transparent hover:border-brand'}`}
+  data-vehicle-id={vehicle.id}
+  onclick={onSelect}
+>
+  <div class="flex items-center space-x-4">
+    <!-- Vehicle Image -->
+    <div class="w-24 h-24 flex-shrink-0">
+      <img 
+        src={vehicle.image} 
+        alt={vehicle.name}
+        class="w-full h-full object-contain"
+        loading="lazy"
+      />
+    </div>
+    
+    <!-- Vehicle Info -->
+    <div class="flex-1">
+      <h3 class="text-vehicle-name text-brand">{vehicle.name}</h3>
+      <p class="text-vehicle-description text-accent">{vehicle.description}</p>
+      
+      <!-- Features -->
+      <div class="flex flex-wrap gap-2 mt-2">
+        {vehicle.features.map(feature => (
+          <span class="text-xs bg-gray-700 text-gray-200 px-2 py-1 rounded">
+            {feature}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Selection Indicator -->
+    <div class="w-6 h-6 rounded-full border-2 border-brand flex items-center justify-center">
+      <div class={`w-3 h-3 rounded-full bg-brand transition-opacity ${selected ? 'opacity-100' : 'opacity-0'}`}></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  backgroundImage?: string;
+  showNavigation?: boolean;
+}
+
+const {
+  title,
+  description,
+  backgroundImage,
+  showNavigation = false
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mobile-container">
+    {backgroundImage && (
+      <div class="background-layer">
+        <!-- Color de respaldo -->
+        <div class="absolute inset-0 bg-black"></div>
+        
+        <!-- Imagen de fondo -->
+        <img
+          src={backgroundImage}
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        
+        <!-- Overlay gradiente opcional -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30"></div>
+      </div>
+    )}
+    
+    <!-- Contenido principal -->
+    <div class="content-layer">
+      <slot />
+    </div>
+    
+    <!-- Navegación opcional -->
+    {showNavigation && (
+      <div class="navigation-layer">
+        <!-- Implementar navegación aquí cuando sea necesario -->
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .mobile-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .background-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .content-layer {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .navigation-layer {
+    position: relative;
+    z-index: 20;
+  }
+  
+  /* Asegurar que funcione bien en diferentes dispositivos */
+  @media (max-width: 320px) {
+    .content-layer {
+      max-width: 100%;
+    }
+  }
+  
+  /* Safe area para dispositivos con notch */
+  @supports (padding: max(0px)) {
+    .mobile-container {
+      padding-top: max(0px, env(safe-area-inset-top));
+      padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+  }
+</style>

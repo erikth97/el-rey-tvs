@@ -1,0 +1,118 @@
+---
+// src/components/layout/ScreenLayout.astro
+export interface Props {
+  title?: string;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  backgroundColor?: 'black' | 'white' | 'gray';
+  containerType?: 'mobile' | 'narrow' | 'full';
+  screenId: string;
+  nextScreen?: string;
+  prevScreen?: string;
+}
+
+const {
+  title,
+  showHeader = false,
+  showFooter = false,
+  backgroundColor = 'black',
+  containerType = 'mobile',
+  screenId,
+  nextScreen,
+  prevScreen
+} = Astro.props;
+
+const bgClass = {
+  black: 'bg-black text-white',
+  white: 'bg-white text-black',
+  gray: 'bg-gray-100 text-black'
+}[backgroundColor];
+
+const containerClass = {
+  mobile: 'container-mobile',
+  narrow: 'container-narrow',
+  full: 'w-full'
+}[containerType];
+---
+
+<div class={`min-h-screen ${bgClass} relative overflow-hidden`} data-screen={screenId}>
+  
+  <!-- Header opcional -->
+  {showHeader && (
+    <header class={`${containerClass} py-4`}>
+      <div class="flex justify-between items-center">
+        {prevScreen && (
+          <button 
+            class="text-muted hover:text-inverse transition-colors"
+            data-nav-to={prevScreen}
+            aria-label="Pantalla anterior"
+          >
+            ← Atrás
+          </button>
+        )}
+        
+        {title && (
+          <h1 class="text-section-title text-center flex-1">{title}</h1>
+        )}
+        
+        <div class="w-16"></div> <!-- Spacer for centering -->
+      </div>
+    </header>
+  )}
+
+  <!-- Contenido principal -->
+  <main class={`${containerClass} flex-1 flex flex-col justify-center items-center py-8`}>
+    <slot />
+  </main>
+
+  <!-- Footer opcional -->
+  {showFooter && (
+    <footer class={`${containerClass} py-4`}>
+      <div class="flex justify-center">
+        {nextScreen && (
+          <button 
+            class="btn-base btn-primary"
+            data-nav-to={nextScreen}
+          >
+            Continuar
+          </button>
+        )}
+      </div>
+    </footer>
+  )}
+
+  <!-- Progress indicator (se agregará dinámicamente) -->
+  <div id="progress-indicator" class="absolute top-4 right-4 hidden">
+    <div class="text-xs text-muted">
+      <span id="current-step">1</span>/<span id="total-steps">6</span>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  /* Estilos específicos para transiciones entre pantallas */
+  [data-screen] {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  [data-screen].screen-enter {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  
+  [data-screen].screen-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  [data-screen].screen-exit {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  [data-screen].screen-exit-active {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+</style>

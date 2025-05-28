@@ -1,0 +1,36 @@
+---
+// src/components/ui/LoadingSpinner.astro
+export interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  color?: 'brand' | 'accent' | 'white';
+  message?: string;
+}
+
+const { 
+  size = 'md', 
+  color = 'brand',
+  message
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-6 h-6',
+  md: 'w-12 h-12',
+  lg: 'w-16 h-16'
+};
+
+const colorClasses = {
+  brand: 'border-brand',
+  accent: 'border-accent',
+  white: 'border-white'
+};
+---
+
+<div class="loading-spinner-container text-center">
+  <div 
+    class={`${sizeClasses[size]} border-4 border-transparent ${colorClasses[color]} border-t-current rounded-full animate-spin mx-auto`}
+  ></div>
+  
+  {message && (
+    <p class="text-sm text-muted mt-2">{message}</p>
+  )}
+</div>
