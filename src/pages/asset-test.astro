@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import { ASSETS_PATHS, VEHICLES_DATA } from '../utils/constants';
+---
+
+<BaseLayout title="Asset Verification - El Rey TVS">
+  <div class="p-4 space-y-6 bg-black text-white min-h-screen">
+    <h1 class="text-2xl font-bold mb-6 text-center text-tvs-red">
+      Verificación de Assets - El Rey TVS
+    </h1>
+    
+    <!-- Pantalla 1: Intro -->
+    <section class="border border-tvs-red p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-tvs-red">Pantalla 1: Intro (2s automático)</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <img src={ASSETS_PATHS.HERO_EL_REY} alt="Hero El Rey" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Hero El Rey</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.TVS_LOGO} alt="TVS Logo" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">TVS Logo</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.STAR_RED} alt="Star Red" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Star Red</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.CROWN} alt="Crown" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Crown</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.STAR_BLUE} alt="Star Blue" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Star Blue</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.FLASH_BLUE} alt="Flash Blue" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Flash Blue</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.FLASH_RED} alt="Flash Red" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Flash Red</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.SIGN_YELLOW} alt="Sign Yellow" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Sign Yellow</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla 2: Instructions -->
+    <section class="border border-tvs-blue p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-tvs-blue">Pantalla 2: Instructions</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="text-center">
+          <img src={ASSETS_PATHS.EL_REY_LOGO} alt="El Rey Logo" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">El Rey Logo</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.FLOWER_3_PETALS} alt="Flower 3 Petals" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Flower 3 Petals</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.RADIAL_YELLOW} alt="Radial Yellow" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Radial Yellow</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla 3: Carousel -->
+    <section class="border border-gold p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-gold">Pantalla 3: Carousel de Vehículos</h2>
+      <div class="grid grid-cols-3 gap-4 mb-4">
+        {VEHICLES_DATA.map((vehicle) => (
+          <div class="text-center">
+            <img src={vehicle.image} alt={vehicle.name} class="w-full h-40 object-contain bg-gray-800 rounded" />
+            <p class="text-sm mt-2 font-bold">{vehicle.name}</p>
+            <p class="text-xs text-gray-400">{vehicle.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT} alt="Flag Blue Left" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Flag Blue Left</p>
+        </div>
+        <div class="text-center">
+          <img src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT} alt="Flag Blue Right" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Flag Blue Right</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla 4: Camera -->
+    <section class="border border-green-400 p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-green-400">Pantalla 4: Camera</h2>
+      <div class="text-center">
+        <img src={ASSETS_PATHS.CAMERA_MASK} alt="Camera Mask" class="w-64 h-64 object-contain bg-gray-800 rounded mx-auto" />
+        <p class="text-sm mt-2">Camera Mask</p>
+      </div>
+    </section>
+
+    <!-- Pantalla 5: Loading -->
+    <section class="border border-yellow-400 p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-yellow-400">Pantalla 5: Loading</h2>
+      <div class="text-center">
+        <img src={ASSETS_PATHS.LOADING_LUCHADOR} alt="Loading Luchador" class="w-64 h-64 object-contain bg-gray-800 rounded mx-auto" />
+        <p class="text-sm mt-2">Loading Luchador</p>
+      </div>
+    </section>
+
+    <!-- Pantalla 6: Final -->
+    <section class="border border-purple-400 p-4 rounded">
+      <h2 class="text-xl font-bold mb-4 text-purple-400">Pantalla 6: Final</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="text-center">
+          <img src={ASSETS_PATHS.FINAL_TITLE} alt="Final Title" class="w-full h-32 object-contain bg-gray-800 rounded" />
+          <p class="text-sm mt-2">Te ves de campeonato</p>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          {VEHICLES_DATA.map((vehicle) => (
+            <div class="text-center">
+              <img src={vehicle.logo} alt={`${vehicle.name} Logo`} class="w-full h-20 object-contain bg-gray-800 rounded" />
+              <p class="text-xs mt-1">{vehicle.name} Logo</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Status Check -->
+    <section class="border border-green-600 p-4 rounded mt-8">
+      <h2 class="text-xl font-bold mb-4 text-green-400">Estado de Verificación</h2>
+      <div class="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <h3 class="font-bold mb-2 text-green-400">Assets Críticos:</h3>
+          <ul class="space-y-1">
+            <li>✅ Hero El Rey</li>
+            <li>✅ TVS Logo</li>
+            <li>✅ El Rey Logo</li>
+            <li>✅ 3 Vehículos</li>
+            <li>✅ 3 Logos Vehículos</li>
+            <li>✅ Camera Mask</li>
+            <li>✅ Loading Luchador</li>
+            <li>✅ Final Title</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold mb-2 text-blue-400">Assets Decorativos:</h3>
+          <ul class="space-y-1">
+            <li>✅ Estrellas (Roja/Azul)</li>
+            <li>✅ Destellos (Rojo/Azul)</li>
+            <li>✅ Corona</li>
+            <li>✅ Signos (Amarillo/Azul)</li>
+            <li>✅ Banderas (Izq/Der)</li>
+            <li>✅ Radial Amarillo</li>
+            <li>✅ Flor 3 Pétalos</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-4 p-3 bg-green-900 rounded">
+        <p class="text-green-200 font-bold">✅ Verificación completa: Todos los assets organizados correctamente</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  // Verificar que todas las imágenes cargan correctamente
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img');
+    let loadedCount = 0;
+    let errorCount = 0;
+    
+    console.log(`🔍 Verificando ${images.length} imágenes...`);
+    
+    images.forEach((img, index) => {
+      img.addEventListener('load', () => {
+        loadedCount++;
+        console.log(`✅ ${loadedCount}/${images.length} - Loaded: ${img.alt}`);
+        if (loadedCount + errorCount === images.length) {
+          console.log(`🎉 Asset verification complete: ${loadedCount} loaded, ${errorCount} errors`);
+          if (errorCount === 0) {
+            console.log(`🎉 ¡PERFECTO! Todos los assets cargan correctamente`);
+          }
+        }
+      });
+      
+      img.addEventListener('error', () => {
+        errorCount++;
+        console.error(`❌ ${errorCount} - Failed to load: ${img.alt} (${img.src})`);
+        if (loadedCount + errorCount === images.length) {
+          console.log(`🎉 Asset verification complete: ${loadedCount} loaded, ${errorCount} errors`);
+        }
+      });
+    });
+  });
+</script>

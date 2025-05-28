@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Font Test - El Rey TVS">
+  <div class="p-8 space-y-8 bg-black text-white min-h-screen">
+    
+    <h1 class="text-3xl font-bold mb-8 text-center text-tvs-red">
+      🔤 Test de Fuentes - El Rey TVS
+    </h1>
+    
+    <!-- ChunkyRetro Font Test -->
+    <section class="border border-tvs-red p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-tvs-red">ChunkyRetro Font</h2>
+      <div class="space-y-4">
+        <div class="font-chunky text-hero text-tvs-red">
+          Así se ve un Rey
+        </div>
+        <div class="font-chunky text-6xl text-center text-tvs-blue">
+          1
+        </div>
+        <div class="font-chunky text-vehicle-name text-tvs-gold">
+          King Deluxe Plus
+        </div>
+        <div class="font-chunky text-2xl text-glow-red">
+          Con efecto glow
+        </div>
+      </div>
+    </section>
+
+    <!-- SignLabeling Font Test -->
+    <section class="border border-tvs-blue p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-tvs-blue">SignLabeling Font</h2>
+      <div class="space-y-4">
+        <div class="font-sign text-section-title text-tvs-blue">
+          ELIGE TU MOTOCARRO
+        </div>
+        <div class="font-sign text-vehicle-description text-tvs-gold">
+          "El más cómodo"
+        </div>
+        <div class="font-sign text-cta-button bg-tvs-red text-white px-6 py-3 rounded-full inline-block cursor-pointer hover:bg-opacity-80 transition-all">
+          ¡ARRE!
+        </div>
+        <div class="font-sign text-body">
+          Webapp interactiva para generar imágenes personalizadas con motocarros TVS. Descubre tu versión Rey.
+        </div>
+      </div>
+    </section>
+
+    <!-- SingLabeling Font Test (Alternativa) -->
+    <section class="border border-tvs-gold p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-tvs-gold">SingLabeling Font</h2>
+      <div class="space-y-4">
+        <div class="font-sing text-xl">
+          Texto alternativo con SingLabeling
+        </div>
+        <div class="font-sing text-body italic">
+          Font fallback para casos especiales
+        </div>
+      </div>
+    </section>
+
+    <!-- Responsive Typography Test -->
+    <section class="border border-green-400 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-green-400">🔄 Responsive Typography Test</h2>
+      <div class="space-y-4">
+        <div class="text-hero text-tvs-red">
+          Hero Responsive (36px-48px)
+        </div>
+        <div class="text-section-title text-tvs-blue">
+          Section Title Responsive (20px-24px)
+        </div>
+        <div class="text-vehicle-name text-tvs-gold">
+          Vehicle Name Responsive (24px-32px)
+        </div>
+        <div class="text-vehicle-description text-gray-300">
+          Vehicle Description Responsive (16px-18px)
+        </div>
+        <div class="text-cta-button bg-tvs-blue px-6 py-3 rounded-full inline-block text-white">
+          CTA Button Responsive (18px-20px)
+        </div>
+        <div class="text-body text-gray-400">
+          Body Text Responsive (14px-16px)
+        </div>
+        <div class="text-caption text-gray-500">
+          Caption Text Responsive (12px-14px)
+        </div>
+      </div>
+    </section>
+
+    <!-- Efectos Especiales -->
+    <section class="border border-purple-400 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-purple-400">✨ Efectos Especiales</h2>
+      <div class="space-y-4">
+        <div class="text-hero font-chunky text-glow-red">
+          Texto con Glow Rojo
+        </div>
+        <div class="text-hero font-chunky text-glow-blue">
+          Texto con Glow Azul
+        </div>
+        <div class="text-hero font-chunky text-glow-gold">
+          Texto con Glow Dorado
+        </div>
+        <div class="text-hero font-chunky text-outline-white text-tvs-black bg-white px-4 py-2 rounded">
+          Texto con Outline
+        </div>
+      </div>
+    </section>
+
+    <!-- Botones con Animaciones -->
+    <section class="border border-yellow-400 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-yellow-400">🎯 Botones Animados</h2>
+      <div class="space-y-4 flex flex-wrap gap-4">
+        <button class="text-cta-button bg-tvs-red text-white px-6 py-3 rounded-full animate-pulse-red hover:scale-105 transition-transform">
+          Botón Pulse Rojo
+        </button>
+        <button class="text-cta-button bg-tvs-blue text-white px-6 py-3 rounded-full animate-pulse-blue hover:scale-105 transition-transform">
+          Botón Pulse Azul
+        </button>
+        <button class="text-cta-button bg-tvs-gold text-black px-6 py-3 rounded-full hover:bg-opacity-80 transition-all duration-300">
+          Botón Hover
+        </button>
+      </div>
+    </section>
+
+    <!-- Device Size Indicator -->
+    <section class="border border-gray-600 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4">📱 Device Size Test</h2>
+      <div id="device-info" class="text-body space-y-2">
+        <p>Viewport Width: <span id="viewport-width" class="text-tvs-gold font-bold">-</span>px</p>
+        <p>Viewport Height: <span id="viewport-height" class="text-tvs-gold font-bold">-</span>px</p>
+        <p>Device Type: <span id="device-type" class="text-tvs-blue font-bold">-</span></p>
+        <p>Font Loading Status: <span id="font-status" class="text-green-400 font-bold">Checking...</span></p>
+      </div>
+    </section>
+
+    <!-- Simulación de Contenido Real -->
+    <section class="border border-cyan-400 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4 text-cyan-400">🎬 Simulación de App Real</h2>
+      
+      <!-- Pantalla Intro Simulada -->
+      <div class="bg-gray-900 p-6 rounded mb-4">
+        <div class="text-center space-y-4">
+          <div class="text-hero font-chunky text-tvs-red">
+            El Rey TVS
+          </div>
+          <div class="text-section-title font-sign text-tvs-gold">
+            ASÍ SE VE UN REY
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantalla Carousel Simulada -->
+      <div class="bg-gray-900 p-6 rounded mb-4">
+        <div class="text-section-title font-sign text-tvs-blue mb-4 text-center">
+          ELIGE TU MOTOCARRO
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="text-vehicle-name font-chunky text-tvs-red">King Deluxe Plus</div>
+            <div class="text-vehicle-description font-sign text-tvs-gold">"El más cómodo"</div>
+          </div>
+          <div class="text-center">
+            <div class="text-vehicle-name font-chunky text-tvs-red">King Duramax Plus</div>
+            <div class="text-vehicle-description font-sign text-tvs-gold">"El más fuerte"</div>
+          </div>
+          <div class="text-center">
+            <div class="text-vehicle-name font-chunky text-tvs-red">King Kargo</div>
+            <div class="text-vehicle-description font-sign text-tvs-gold">"El de batalla"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón CTA Simulado -->
+      <div class="text-center">
+        <button class="text-cta-button font-sign bg-tvs-red text-white px-8 py-4 rounded-full hover:scale-105 transition-transform">
+          ¡TOMAR FOTO!
+        </button>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Función para actualizar información del dispositivo
+    function updateDeviceInfo() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      const widthElement = document.getElementById('viewport-width');
+      const heightElement = document.getElementById('viewport-height');
+      const deviceElement = document.getElementById('device-type');
+      
+      if (widthElement) widthElement.textContent = width.toString();
+      if (heightElement) heightElement.textContent = height.toString();
+      
+      let deviceType = 'Desktop';
+      if (width <= 640) deviceType = 'Mobile';
+      else if (width <= 1024) deviceType = 'Tablet';
+      
+      if (deviceElement) deviceElement.textContent = deviceType;
+    }
+    
+    // Verificar carga de fuentes
+    function checkFontLoading() {
+      const fonts = ['ChunkyRetro', 'SignLabeling', 'SingLabeling'];
+      const loadedFonts = [];
+      
+      fonts.forEach(fontName => {
+        // Crear elemento de prueba
+        const testDiv = document.createElement('div');
+        testDiv.style.fontFamily = `${fontName}, sans-serif`;
+        testDiv.style.position = 'absolute';
+        testDiv.style.visibility = 'hidden';
+        testDiv.style.fontSize = '72px';
+        testDiv.innerHTML = 'Test Font Loading';
+        document.body.appendChild(testDiv);
+        
+        // Verificar si la fuente se aplicó
+        const computedFont = window.getComputedStyle(testDiv).fontFamily;
+        if (computedFont.toLowerCase().includes(fontName.toLowerCase())) {
+          loadedFonts.push(fontName);
+          console.log(`✅ ${fontName} loaded successfully`);
+        } else {
+          console.log(`❌ ${fontName} failed to load`);
+        }
+        
+        document.body.removeChild(testDiv);
+      });
+      
+      // Actualizar status
+      const statusElement = document.getElementById('font-status');
+      if (statusElement) {
+        if (loadedFonts.length === fonts.length) {
+          statusElement.textContent = `✅ All fonts loaded (${loadedFonts.length}/3)`;
+          statusElement.className = 'text-green-400 font-bold';
+        } else if (loadedFonts.length > 0) {
+          statusElement.textContent = `⚠️ Partial loading (${loadedFonts.length}/3)`;
+          statusElement.className = 'text-yellow-400 font-bold';
+        } else {
+          statusElement.textContent = `❌ No fonts loaded (0/3)`;
+          statusElement.className = 'text-red-400 font-bold';
+        }
+      }
+      
+      console.log('Font loading check complete:', {
+        total: fonts.length,
+        loaded: loadedFonts.length,
+        fonts: loadedFonts
+      });
+    }
+    
+    // Inicializar
+    updateDeviceInfo();
+    
+    // Verificar fuentes después de un pequeño delay
+    setTimeout(checkFontLoading, 1000);
+    
+    // Actualizar en resize
+    window.addEventListener('resize', updateDeviceInfo);
+    
+    // Re-verificar fuentes cuando se carguen recursos adicionales
+    window.addEventListener('load', () => {
+      setTimeout(checkFontLoading, 500);
+    });
+    
+    console.log('🔤 Font test page initialized');
+  });
+</script>
