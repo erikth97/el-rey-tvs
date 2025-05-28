@@ -1,0 +1,125 @@
+---
+import ScreenLayout from '@/layout/ScreenLayout.astro';
+import { VEHICLES_DATA, ASSETS_PATHS } from '../../utils/constants';
+---
+
+<ScreenLayout 
+  screenId="carousel" 
+  backgroundColor="black"
+  showHeader={true}
+  title="Elige tu Motocarro"
+  prevScreen="instructions"
+>
+  <div class="w-full space-y-8 animate-fade-in-scale">
+    
+    <!-- Title -->
+    <h2 class="text-section-title text-secondary text-center mb-8">
+      ELIGE TU MOTOCARRO
+    </h2>
+    
+    <!-- Vehicle Cards -->
+    <div class="space-y-6">
+      {VEHICLES_DATA.map((vehicle, index) => (
+        <div 
+          class="vehicle-card bg-gray-900 rounded-lg p-6 cursor-pointer transition-transform hover:scale-105 border-2 border-transparent hover:border-brand"
+          data-vehicle-id={vehicle.id}
+        >
+          <div class="flex items-center space-x-4">
+            <!-- Vehicle Image -->
+            <div class="w-24 h-24 flex-shrink-0">
+              <img 
+                src={vehicle.image} 
+                alt={vehicle.name}
+                class="w-full h-full object-contain"
+              />
+            </div>
+            
+            <!-- Vehicle Info -->
+            <div class="flex-1">
+              <h3 class="text-vehicle-name text-brand">{vehicle.name}</h3>
+              <p class="text-vehicle-description text-accent">{vehicle.description}</p>
+              
+              <!-- Features -->
+              <div class="flex flex-wrap gap-2 mt-2">
+                {vehicle.features.map(feature => (
+                  <span class="text-xs bg-gray-700 text-gray-200 px-2 py-1 rounded">
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Selection Indicator -->
+            <div class="w-6 h-6 rounded-full border-2 border-brand flex items-center justify-center">
+              <div class="w-3 h-3 rounded-full bg-brand opacity-0 transition-opacity selection-dot"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Decorative Flags -->
+    <div class="flex justify-between mt-8">
+      <img src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT} alt="" class="w-12 h-12" />
+      <img src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT} alt="" class="w-12 h-12" />
+    </div>
+    
+    <!-- Continue Button (hidden until selection) -->
+    <div class="text-center">
+      <button 
+        id="continue-btn" 
+        class="btn-base btn-primary opacity-50 cursor-not-allowed" 
+        disabled
+      >
+        ¡CONTINUAR!
+      </button>
+    </div>
+    
+  </div>
+</ScreenLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var vehicleCards = document.querySelectorAll('.vehicle-card');
+    var continueBtn = document.getElementById('continue-btn');
+    var selectedVehicle = null;
+    
+    if (!continueBtn) {
+      console.error('Continue button not found');
+      return;
+    }
+    
+    vehicleCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        // Remove previous selection
+        vehicleCards.forEach(function(c) {
+          c.classList.remove('border-brand');
+          var dot = c.querySelector('.selection-dot');
+          if (dot && dot instanceof HTMLElement) {
+            dot.style.opacity = '0';
+          }
+        });
+        
+        // Add selection to clicked card
+        card.classList.add('border-brand');
+        var selectedDot = card.querySelector('.selection-dot');
+        if (selectedDot && selectedDot instanceof HTMLElement) {
+          selectedDot.style.opacity = '1';
+        }
+        
+        // Enable continue button - cast to HTMLButtonElement
+        selectedVehicle = card.getAttribute('data-vehicle-id');
+        var btnElement = continueBtn;
+        if (btnElement && btnElement instanceof HTMLButtonElement) {
+          btnElement.disabled = false;
+          btnElement.classList.remove('opacity-50', 'cursor-not-allowed');
+          
+          // Add click handler to continue button
+          btnElement.onclick = function() {
+            window.location.href = '/screens/camera';
+          };
+        }
+      });
+    });
+  });
+</script>
