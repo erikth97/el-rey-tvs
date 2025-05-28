@@ -1,0 +1,426 @@
+---
+// src/pages/loading.astro
+---
+
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Procesando tu documento con IA" />
+    <title>Procesando - Document AI</title>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
+        <!-- Progress Bar -->
+        <div class="mb-8 w-full max-w-md">
+            <div class="flex items-center justify-center mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">1</div>
+                    <div class="w-16 h-1 bg-blue-500 rounded"></div>
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">2</div>
+                    <div class="w-16 h-1 bg-blue-500 rounded"></div>
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">3</div>
+                    <div class="w-16 h-1 bg-blue-500 rounded"></div>
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">4</div>
+                </div>
+            </div>
+            <p class="text-center text-gray-600 text-sm">Paso 4 de 4: Procesando documento</p>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="text-center mb-12">
+            <!-- Animated AI Icon -->
+            <div class="relative mb-8">
+                <div class="w-32 h-32 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-2xl animate-pulse">
+                    <svg class="w-16 h-16 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                
+                <!-- Floating particles animation -->
+                <div class="absolute -top-4 -left-4 w-4 h-4 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+                <div class="absolute -top-2 -right-6 w-3 h-3 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
+                <div class="absolute -bottom-4 -right-2 w-5 h-5 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+                <div class="absolute -bottom-2 -left-6 w-2 h-2 bg-blue-300 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
+            </div>
+
+            <!-- Loading Messages -->
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Analizando tu documento
+            </h1>
+            <p id="loadingMessage" class="text-xl text-gray-600 mb-6 transition-opacity duration-500">
+                Iniciando análisis...
+            </p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="w-full max-w-2xl mb-12">
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+                <div class="space-y-4">
+                    <!-- Step 1 -->
+                    <div class="flex items-center" id="step1">
+                        <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-800">Preparando imagen</h3>
+                            <p class="text-sm text-gray-600">Optimizando calidad y formato</p>
+                        </div>
+                        <div class="w-6 h-6 border-2 border-blue-500 rounded-full animate-spin hidden" id="spinner1"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex items-center opacity-50" id="step2">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold mr-4">
+                            2
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-800">Reconocimiento óptico (OCR)</h3>
+                            <p class="text-sm text-gray-600">Extrayendo texto de la imagen</p>
+                        </div>
+                        <div class="w-6 h-6 border-2 border-blue-500 rounded-full animate-spin hidden" id="spinner2"></div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex items-center opacity-50" id="step3">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold mr-4">
+                            3
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-800">Análisis inteligente</h3>
+                            <p class="text-sm text-gray-600">Clasificando y estructurando información</p>
+                        </div>
+                        <div class="w-6 h-6 border-2 border-blue-500 rounded-full animate-spin hidden" id="spinner3"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex items-center opacity-50" id="step4">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold mr-4">
+                            4
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-800">Generando resultados</h3>
+                            <p class="text-sm text-gray-600">Preparando datos extraídos</p>
+                        </div>
+                        <div class="w-6 h-6 border-2 border-blue-500 rounded-full animate-spin hidden" id="spinner4"></div>
+                    </div>
+                </div>
+
+                <!-- Overall Progress Bar -->
+                <div class="mt-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-gray-600">Progreso general</span>
+                        <span id="progressPercent" class="text-sm font-medium text-blue-600">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Facts -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 max-w-md text-center">
+            <h3 class="font-semibold text-blue-800 mb-2">💡 ¿Sabías que...?</h3>
+            <p id="funFact" class="text-blue-700 text-sm">
+                Document AI puede procesar más de 50 tipos diferentes de documentos
+            </p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importar sistemas de navegación y storage
+        import { navigationManager, setNavigationData, getNavigationData } from '/src/utils/helpers/navigation.js';
+        import { storage, saveAnalysisResult } from '/src/utils/helpers/storage.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const loadingMessage = document.getElementById('loadingMessage');
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            const funFact = document.getElementById('funFact');
+
+            // Datos para la simulación
+            const loadingMessages = [
+                'Iniciando análisis...',
+                'Preparando imagen para procesamiento...',
+                'Ejecutando reconocimiento óptico...',
+                'Analizando estructura del documento...',
+                'Extrayendo información clave...',
+                'Validando datos encontrados...',
+                'Finalizando procesamiento...',
+                '¡Análisis completado!'
+            ];
+
+            const funFacts = [
+                'Document AI puede procesar más de 50 tipos diferentes de documentos',
+                'Nuestro sistema analiza más de 10,000 documentos al día',
+                'El reconocimiento óptico puede detectar texto en más de 100 idiomas',
+                'La IA puede identificar campos específicos con 98% de precisión',
+                'El procesamiento toma menos de 30 segundos en promedio'
+            ];
+
+            let currentStep = 0;
+            let progress = 0;
+            let messageIndex = 0;
+
+            // Verificar que tenemos los datos necesarios
+            const documentType = getNavigationData('selectedDocumentType');
+            const capturedImage = getNavigationData('capturedImage');
+
+            if (!documentType || !capturedImage) {
+                console.error('❌ Datos faltantes para el procesamiento');
+                alert('Error: Faltan datos necesarios. Volviendo al inicio.');
+                window.location.href = '/';
+                return;
+            }
+
+            // Iniciar simulación de procesamiento
+            startProcessingSimulation();
+
+            function startProcessingSimulation() {
+                const totalSteps = 4;
+                const stepDuration = 2000; // 2 segundos por paso
+                const progressInterval = 100; // Actualizar cada 100ms
+
+                console.log('🤖 Iniciando simulación de procesamiento...');
+
+                // Actualizar mensaje inicial
+                updateLoadingMessage();
+
+                // Rotación de datos curiosos
+                setInterval(() => {
+                    const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+                    funFact.textContent = randomFact;
+                }, 3000);
+
+                // Simulación de pasos
+                const stepInterval = setInterval(() => {
+                    if (currentStep < totalSteps) {
+                        processStep(currentStep + 1);
+                        currentStep++;
+                    } else {
+                        clearInterval(stepInterval);
+                        completeProcessing();
+                    }
+                }, stepDuration);
+
+                // Actualización suave del progreso
+                const progressUpdateInterval = setInterval(() => {
+                    const targetProgress = (currentStep / totalSteps) * 100;
+                    
+                    if (progress < targetProgress) {
+                        progress = Math.min(progress + 2, targetProgress);
+                        updateProgress(progress);
+                    }
+
+                    if (progress >= 100) {
+                        clearInterval(progressUpdateInterval);
+                    }
+                }, progressInterval);
+
+                // Cambiar mensajes de carga
+                const messageInterval = setInterval(() => {
+                    messageIndex = (messageIndex + 1) % loadingMessages.length;
+                    updateLoadingMessage();
+                    
+                    if (messageIndex === loadingMessages.length - 1) {
+                        clearInterval(messageInterval);
+                    }
+                }, 1000);
+            }
+
+            function processStep(stepNumber) {
+                const step = document.getElementById(`step${stepNumber}`);
+                const spinner = document.getElementById(`spinner${stepNumber}`);
+                const prevSteps = [];
+
+                // Activar step actual
+                step.classList.remove('opacity-50');
+                spinner.classList.remove('hidden');
+
+                // Marcar pasos anteriores como completados
+                for (let i = 1; i < stepNumber; i++) {
+                    const prevStep = document.getElementById(`step${i}`);
+                    const prevSpinner = document.getElementById(`spinner${i}`);
+                    const stepNumber_element = prevStep.querySelector('.rounded-full');
+                    
+                    prevSpinner.classList.add('hidden');
+                    stepNumber_element.classList.remove('bg-gray-300', 'text-gray-500');
+                    stepNumber_element.classList.add('bg-green-500', 'text-white');
+                    stepNumber_element.innerHTML = `
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    `;
+                }
+
+                console.log(`✅ Paso ${stepNumber} procesando...`);
+            }
+
+            function updateProgress(percent) {
+                progressBar.style.width = `${percent}%`;
+                progressPercent.textContent = `${Math.round(percent)}%`;
+            }
+
+            function updateLoadingMessage() {
+                const message = loadingMessages[messageIndex];
+                loadingMessage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    loadingMessage.textContent = message;
+                    loadingMessage.style.opacity = '1';
+                }, 250);
+            }
+
+            function completeProcessing() {
+                // Marcar último paso como completado
+                const lastStep = document.getElementById('step4');
+                const lastSpinner = document.getElementById('spinner4');
+                const lastStepNumber = lastStep.querySelector('.rounded-full');
+                
+                lastSpinner.classList.add('hidden');
+                lastStepNumber.classList.remove('bg-gray-300', 'text-gray-500');
+                lastStepNumber.classList.add('bg-green-500', 'text-white');
+                lastStepNumber.innerHTML = `
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                `;
+
+                // Completar progreso
+                updateProgress(100);
+
+                // Generar resultado simulado
+                const analysisResult = generateMockAnalysisResult();
+                
+                // Guardar resultado
+                saveAnalysisResult(analysisResult);
+                setNavigationData('analysisResult', analysisResult);
+
+                console.log('✅ Procesamiento completado:', analysisResult);
+
+                // Navegar a resultados después de una pausa
+                setTimeout(() => {
+                    window.location.href = '/result';
+                }, 1500);
+            }
+
+            function generateMockAnalysisResult() {
+                const documentType = getNavigationData('selectedDocumentType');
+                
+                // Resultados simulados según el tipo de documento
+                const mockResults = {
+                    'id': {
+                        extractedData: {
+                            'Nombre completo': 'Juan Carlos Pérez González',
+                            'Número de documento': '12345678901',
+                            'Fecha de nacimiento': '15/03/1985',
+                            'Lugar de nacimiento': 'Monterrey, Nuevo León',
+                            'Dirección': 'Av. Constitución 123, Col. Centro',
+                            'CURP': 'PEGJ850315HNLRXN09',
+                            'Fecha de expedición': '20/01/2020',
+                            'Fecha de vencimiento': '20/01/2030'
+                        },
+                        confidence: 0.94
+                    },
+                    'invoice': {
+                        extractedData: {
+                            'Emisor': 'Tecnología Avanzada S.A. de C.V.',
+                            'RFC Emisor': 'TAV123456789',
+                            'Folio': 'F001-00012345',
+                            'Fecha': '15/05/2024',
+                            'Receptor': 'Cliente Ejemplo S.A.',
+                            'RFC Receptor': 'CEJ987654321',
+                            'Subtotal': '$1,250.00',
+                            'IVA (16%)': '$200.00',
+                            'Total': '$1,450.00',
+                            'Moneda': 'MXN',
+                            'Método de pago': 'Transferencia electrónica'
+                        },
+                        confidence: 0.91
+                    },
+                    'receipt': {
+                        extractedData: {
+                            'Establecimiento': 'Super Mercado La Esquina',
+                            'Dirección': 'Av. Universidad 456, Monterrey',
+                            'Fecha': '28/05/2024',
+                            'Hora': '14:32:15',
+                            'Ticket': '#0001234567',
+                            'Cajero': 'CAJA 03 - MARIA L.',
+                            'Artículos': '7 productos',
+                            'Subtotal': '$234.50',
+                            'Descuentos': '$12.30',
+                            'Total': '$222.20',
+                            'Pago': 'EFECTIVO $250.00',
+                            'Cambio': '$27.80'
+                        },
+                        confidence: 0.88
+                    },
+                    'document': {
+                        extractedData: {
+                            'Tipo de documento': 'Contrato de prestación de servicios',
+                            'Fecha del documento': '10/05/2024',
+                            'Partes involucradas': 'Empresa ABC y Cliente XYZ',
+                            'Vigencia': 'Del 01/06/2024 al 31/05/2025',
+                            'Valor del contrato': '$25,000.00 MXN',
+                            'Cláusulas principales': '12 cláusulas identificadas',
+                            'Firmas detectadas': '2 firmas válidas',
+                            'Sellos oficiales': '1 sello corporativo',
+                            'Páginas': '3 páginas procesadas'
+                        },
+                        confidence: 0.85
+                    }
+                };
+
+                const result = mockResults[documentType] || mockResults['document'];
+                
+                return {
+                    documentType: documentType,
+                    extractedData: result.extractedData,
+                    confidence: result.confidence,
+                    processingTime: Math.floor(Math.random() * 3000) + 2000, // 2-5 segundos
+                    timestamp: Date.now(),
+                    imageProcessed: true,
+                    fieldsFound: Object.keys(result.extractedData).length
+                };
+            }
+
+            console.log('⏳ Loading page initialized');
+        });
+    </script>
+
+    <style>
+        @keyframes pulse-custom {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-pulse-custom {
+            animation: pulse-custom 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</body>
+</html>
