@@ -1,0 +1,122 @@
+---
+import RegistroLayout from '../layout/RegistroLayout.astro';
+import Decoration from '../components/ui/Decoration.astro';
+import Button from '../components/ui/Button.astro';
+
+const decorativeImageBase = '/assets/decorations'; // Asume que las imágenes decorativas están aquí
+---
+<RegistroLayout description="Formulario de registro de datos.">
+  <div class="registro-form-container">
+
+    <Decoration position="top-left" />
+    <Decoration position="top-right" />
+    
+    <div class="form-content">
+      <h2 class="form-heading" data-text="¿CÓMO TE DICEN, CAMPEÓN?">¿CÓMO TE DICEN, CAMPEÓN?</h2>
+      <input type="text" placeholder="PEPE CHÁVEZ" class="input-field" />
+
+      <h2 class="form-heading" data-text="DÉJANOS TU WHATSAPP">DÉJANOS TU WHATSAPP</h2>
+      <input type="tel" placeholder="12345678910" class="input-field" />
+
+      <div class="button-container">
+        <a
+          href="/screens/camera"
+          onclick="event.preventDefault(); const h=this.href; setTimeout(()=> window.location.href=h, 300);"
+        >
+          <Button text="¡ARRE!" />
+        </a>
+      </div>
+    </div>
+
+    <Decoration position="bottom-left" />
+    <Decoration position="bottom-right" />
+  </div>
+</RegistroLayout>
+
+<style>
+  .registro-form-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 16px;
+    background-size: contain;
+    background-position: center;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  .registro-title {
+    display: none;
+  }
+
+  .form-content {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .form-heading {
+    font-family: 'Sign Labeling', sans-serif;
+    font-size: 28px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    color: #FE4242;
+    text-transform: uppercase;
+    text-shadow: 0.5px 0.5px 0px white, -0.5px 0.5px 0px white, 0.5px -0.5px 0px white, -0.5px -0.5px 0px white;
+  }
+
+  .form-heading::before,
+  .form-heading::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .form-heading::before {
+    top: 2px;
+    color: #FFD700;
+    opacity: 0.8;
+  }
+
+  .form-heading::after {
+    top: 3px;
+    color: #FFD700;
+    opacity: 0.4;
+  }
+
+  .input-field {
+    width: 100%;
+    height: 56px;
+    background-color: #FFFADE;
+    border: none;
+    border-radius: 28px;
+    padding: 0 32px;
+    text-align: start;
+    font-family: 'Sign Labeling', sans-serif;
+    font-size: 18px;
+    color: #0033A0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .input-field::placeholder {
+    color: #0033A0;
+    opacity: 0.8;
+    font-style: italic;
+  }
+
+  .button-container {
+    margin-top: 24px;
+  }
+
+</style>
