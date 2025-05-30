@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <div id="app" class="flex-1 flex flex-col bg-[#E6E3E1] min-h-screen"></div>
+
+    <script>
+      // Componente de resultados
+      const ResultsScreen = () => {
+        const container = document.createElement('div');
+        container.className = 'flex flex-col items-center justify-between h-full py-4 px-4 max-w-md mx-auto';
+        
+        // Estrellas decorativas
+        const starsTop = document.createElement('div');
+        starsTop.className = 'w-full flex justify-between mb-2';
+        starsTop.innerHTML = `
+          <span class="text-[#FF4C4C] text-2xl">★</span>
+          <span class="text-[#0047AB] text-xl">★</span>
+          <span class="text-[#FF4C4C] text-3xl">★</span>
+          <span class="text-[#0047AB] text-2xl">★</span>
+        `;
+        
+        // Título principal
+        const title = document.createElement('h1');
+        title.className = 'text-3xl mb-4 text-center uppercase';
+        title.style.fontFamily = 'Sign Labeling, sans-serif';
+        title.style.color = '#0047AB';
+        title.innerHTML = '¡TE VES DE<br>CAMPEONATO!';
+        title.style.textShadow = '1px 1px 0px #FF4C4C, -1px -1px 0px #FF4C4C';
+        
+        // Imagen principal del luchador
+        const imageCard = document.createElement('div');
+        imageCard.className = 'w-full max-w-sm mx-auto rounded-2xl overflow-hidden shadow-xl my-4 relative';
+        
+        // Usar la imagen de ejemplo o la foto capturada
+        const resultImage = document.createElement('img');
+        const photo = sessionStorage.getItem('photo');
+        
+        // Si hay foto, usarla como base para la imagen generada
+        if (photo) {
+          // En un caso real, aquí se enviaría la foto al servidor para procesarla
+          // y recibir la imagen generada. Por ahora usamos una imagen de ejemplo
+          resultImage.src = '/assets/images/luchador-result.jpg'; // Imagen de ejemplo
+        } else {
+          resultImage.src = '/assets/images/luchador-result.jpg'; // Imagen de ejemplo
+        }
+        
+        resultImage.className = 'w-full object-cover rounded-lg';
+        resultImage.alt = 'Tu versión luchador';
+        imageCard.appendChild(resultImage);
+        
+        // Botón de descarga
+        const downloadBtn = document.createElement('button');
+        downloadBtn.className = 'absolute top-2 right-2 bg-white rounded-full p-2';
+        downloadBtn.innerHTML = `
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L7 11H17L12 16Z" fill="#0047AB"/>
+            <path d="M12 4V12" stroke="#0047AB" stroke-width="2"/>
+            <path d="M4 20H20" stroke="#0047AB" stroke-width="2"/>
+          </svg>
+        `;
+        downloadBtn.onclick = () => {
+          // En un caso real, aquí se descargaría la imagen
+          alert('Descargando imagen...');
+        };
+        imageCard.appendChild(downloadBtn);
+        
+        // Frase motivacional
+        const phrase = document.createElement('p');
+        phrase.className = 'text-center text-[#0047AB] text-xl uppercase mt-4 mb-6';
+        phrase.style.fontFamily = 'Sign Labeling, sans-serif';
+        phrase.innerHTML = '¡ESTE SÍ ES DE LOS<br>QUE NO SE RAJAN!';
+        
+        // Botones de acción
+        const actions = document.createElement('div');
+        actions.className = 'w-full flex flex-row items-center justify-center space-x-4 mt-4';
+        
+        // Botón Volver
+        const backButton = document.createElement('button');
+        backButton.className = 'px-8 py-3 bg-[#0047AB] text-white rounded-full uppercase shadow-md';
+        backButton.style.fontFamily = 'Sign Labeling, sans-serif';
+        backButton.textContent = 'VA DE NUEZ';
+        backButton.onclick = () => {
+          window.location.href = '/screens/camera';
+        };
+        
+        // Botón Compartir
+        const shareButton = document.createElement('button');
+        shareButton.className = 'px-8 py-3 bg-[#FF4C4C] text-white rounded-full uppercase shadow-md';
+        shareButton.style.fontFamily = 'Sign Labeling, sans-serif';
+        shareButton.textContent = 'COMPARTIR';
+        shareButton.onclick = () => {
+          if (navigator.share) {
+            navigator.share({
+              title: '¡Mi versión luchador de El Rey TVs!',
+              text: '¡Mira mi versión luchador generada por El Rey TVs!',
+              url: window.location.href,
+            });
+          } else {
+            alert('Tu navegador no soporta la función de compartir');
+          }
+        };
+        
+        actions.appendChild(backButton);
+        actions.appendChild(shareButton);
+        
+        // Ensamblar todo
+        container.appendChild(starsTop);
+        container.appendChild(title);
+        container.appendChild(imageCard);
+        container.appendChild(phrase);
+        container.appendChild(actions);
+        
+        return container;
+      };
+
+      // Inicializar la pantalla de resultados
+      const resultsScreen = ResultsScreen();
+      const appElement = document.getElementById('app');
+      if (appElement) {
+        appElement.appendChild(resultsScreen);
+      }
+    </script>
+  </main>
+</BaseLayout>
