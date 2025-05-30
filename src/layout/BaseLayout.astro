@@ -3,9 +3,15 @@ import '../styles/fonts.css';
 
 export interface Props {
   description?: string;
+  title?: string;
+  keywords?: string;
 }
 
-const { description = 'El Rey TVS - Así se ve un Rey' } = Astro.props;
+const { 
+  description = 'El Rey TVS - Así se ve un Rey',
+  title = 'El Rey TVS',
+  keywords = 'TVS, motocarro, rey, transporte, mototaxi'
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -14,16 +20,29 @@ const { description = 'El Rey TVS - Así se ve un Rey' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Favicons básicos -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Título dinámico -->
+    <title>{title}</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     
-    <!-- PWA Meta mínimo -->
+    <!-- PWA Meta -->
     <meta name="theme-color" content="#E6E3E1" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Preload assets críticos -->
+    <link rel="preload" href="/assets/overlays/texture_paper.png" as="image" />
+    <link rel="preload" href="/assets/images/logos/tvs-logo.png" as="image" />
+    
+    <!-- Optimización de fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   
   <body>
@@ -32,39 +51,174 @@ const { description = 'El Rey TVS - Así se ve un Rey' } = Astro.props;
 </html>
 
 <style is:global>
-  /* Reset básico */
+  /* Reset mejorado */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  html, body {
+  html {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
     background-color: #E6E3E1;
     background-image: url('/assets/overlays/texture_paper.png');
     background-repeat: repeat;
     background-size: 100% auto;
-    font-family: system-ui, -apple-system, sans-serif;
+    background-attachment: fixed;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
+    position: relative;
   }
 
-  /* Variables de color TVS */
+  /* Variables CSS mejoradas */
   :root {
+    /* Colores primarios TVS */
     --tvs-red: #E31E24;
+    --tvs-red-dark: #B71C1C;
+    --tvs-red-light: #FF5252;
     --tvs-blue: #2563EB;
+    --tvs-blue-dark: #1E3A8A;
+    --tvs-blue-light: #3B82F6;
     --tvs-gold: #F59E0B;
+    --tvs-gold-dark: #D97706;
     --tvs-yellow: #EAB308;
+    
+    /* Colores específicos */
+    --brand-blue: #003399;
+    --brand-yellow: #FFD700;
+    --intro-orange: #FF7B00;
+    --intro-blue: #2563EB;
+    
+    /* Colores de fondo */
+    --paper: #E6E3E1;
+    --paper-dark: #D4D1CE;
+    --paper-light: #F2F0ED;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    
+    /* Transiciones */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+  }
+
+  /* Utilidades globales */
+  .screen-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .content-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-lg);
+  }
+
+  .decorative-element {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* Optimizaciones de rendimiento */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Mejoras de accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Optimización para dispositivos táctiles */
+  @media (hover: none) and (pointer: coarse) {
+    button, .interactive {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Estilos específicos para pantallas */
+  .intro-screen {
+    background: linear-gradient(135deg, #E8E8E8 0%, #F5F5F5 100%);
+  }
+
+  .carousel-screen {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 50%, #d1d5db 100%);
+  }
+
+  /* Mejoras tipográficas */
+  .font-chunky {
+    font-family: 'ChunkyRetro', 'Bangers', cursive;
+    letter-spacing: 0.05em;
+  }
+
+  .font-sign {
+    font-family: 'SignLabeling', 'Signika Negative', sans-serif;
+  }
+
+  .font-script {
+    font-family: 'SingLabeling', 'Pacifico', cursive;
+  }
+
+  /* Estilos para elementos flotantes */
+  .float-element {
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  /* Loading states */
+  .loading {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+  }
+
+  .loaded {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
