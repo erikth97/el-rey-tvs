@@ -1,0 +1,96 @@
+---
+import '../styles/fonts.css';
+---
+
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generando tu luchador...</title>
+  </head>
+  <body class="bg-[#FF4C4C] text-white min-h-screen flex flex-col items-center justify-center">
+    <div id="app"></div>
+    <script>
+      // Mensajes divertidos para mostrar durante la carga
+      const messages = [
+        "GENERANDO...",
+        "¡ESE PORTE... ¡ES DE REY!",
+        "¡LUCHADOR AL VOLANTE, PAPÁ!",
+        "ESTO ESTÁ QUEDANDO CHIDO, CHIDO...",
+        "PREPARANDO TU MÁSCARA DE CAMPEÓN...",
+        "CALIBRANDO SUPERPODERES...",
+        "¡AJUSTANDO MÚSCULOS DE ACERO!",
+        "CARGANDO MOVIMIENTOS ESPECIALES...",
+        "¡CASI LISTO PARA EL RING!"
+      ];
+
+      // Componente de carga
+      const LoadingScreen = () => {
+        const container = document.createElement('div');
+        container.className = 'flex flex-col items-center justify-center px-4 text-center';
+        
+        // Imagen del luchador
+        const luchadorImg = document.createElement('img');
+        luchadorImg.src = '/assets/images/loading-luchador.png';
+        luchadorImg.alt = 'Luchador';
+        luchadorImg.width = 180;
+        luchadorImg.height = 180;
+        luchadorImg.className = 'mb-8 animate-bounce';
+        
+        // Mensaje
+        const messageEl = document.createElement('h2');
+        messageEl.className = 'text-2xl font-bold mb-4';
+        messageEl.style.fontFamily = 'Sign Labeling, sans-serif';
+        messageEl.textContent = messages[0];
+        
+        // Indicador de carga
+        const loader = document.createElement('div');
+        loader.className = 'w-16 h-1 bg-white rounded-full mt-4 relative overflow-hidden';
+        const loaderBar = document.createElement('div');
+        loaderBar.className = 'absolute top-0 left-0 h-full bg-white animate-pulse';
+        loaderBar.style.width = '100%';
+        loader.appendChild(loaderBar);
+        
+        container.appendChild(luchadorImg);
+        container.appendChild(messageEl);
+        container.appendChild(loader);
+        
+        return { container, messageEl };
+      };
+
+      // Inicializar la pantalla de carga
+      const { container, messageEl } = LoadingScreen();
+      const appElement = document.getElementById('app');
+      if (appElement) {
+        appElement.appendChild(container);
+      }
+      
+      // Cambiar mensajes cada 2 segundos
+      let currentIndex = 0;
+      const changeMessage = () => {
+        currentIndex = (currentIndex + 1) % messages.length;
+        messageEl.textContent = messages[currentIndex];
+      };
+      
+      const messageInterval = setInterval(changeMessage, 2000);
+      
+      // Simular tiempo de carga y redireccionar
+      setTimeout(() => {
+        clearInterval(messageInterval);
+        // Redireccionar a la página de resultados
+        window.location.href = '/results';
+      }, 8000); // 8 segundos de carga
+      
+      // Recuperar la foto de sessionStorage
+      const sessionId = sessionStorage.getItem('sessionId');
+      const photo = sessionStorage.getItem('photo');
+      
+      // Enviar la foto al servidor (simulado)
+      if (sessionId && photo) {
+        console.log('Enviando foto al servidor con ID:', sessionId);
+        // Aquí iría el código para enviar la foto al servidor
+        // fetch('/api/upload', { method: 'POST', body: JSON.stringify({ sessionId, photo }) });
+      }
+    </script>
+  </body>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<BaseLayout description={description}>
+  <div class="registro-container">
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .registro-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+   position: relative;
+    overflow: hidden;
+  }
+</style>

@@ -1,41 +1,88 @@
 ---
-
-export interface Props {
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
-  disabled?: boolean;
-  onClick?: string;
+interface Props {
+  text: string;
+  type?: 'button' | 'submit';
   class?: string;
+  onClick?: string;
 }
 
-const {
-  variant = 'primary',
-  size = 'md',
-  disabled = false,
-  onClick,
-  class: className = ''
-} = Astro.props;
-
-const baseClasses = 'btn-base transition-all duration-300';
-const variantClasses = {
-  primary: 'btn-primary',
-  secondary: 'btn-secondary',
-  outline: 'btn-outline'
-};
-const sizeClasses = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg'
-};
-
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+const { text, type = 'button', class: className = '', onClick } = Astro.props;
 ---
 
-<button 
-  class={classes}
-  disabled={disabled}
-  onclick={onClick}
-  {...Astro.props}
->
-  <slot />
-</button>
+<div class="button-wrapper">
+  <button 
+    type={type} 
+    class={`tvs-button ${className}`}
+    onclick={onClick}
+  >
+    <img src="/assets/decorative/Particles.png" alt="" class="particle particle-left" />
+    {text}
+    <img src="/assets/decorative/Particles.png" alt="" class="particle particle-right" />
+  </button>
+</div>
+
+<style>
+  .button-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .button-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #FFD700;
+    border-radius: 100px;
+    transform: translate(8px, 8px);
+    z-index: 0;
+  }
+
+  .tvs-button {
+    background-color: #0033A0;
+    color: white;
+    font-family: 'Sign Labeling', sans-serif;
+    font-size: 24px;
+    padding: 12px 48px;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    min-width: 180px;
+    transition: transform 0.2s;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+
+  .tvs-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .tvs-button:active {
+    transform: translateY(3px);
+  }
+
+  .particle {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1;
+  }
+
+  .tvs-button:active .particle {
+    opacity: 1;
+  }
+
+  .particle-left {
+    left: -20px;
+    top: 30%;
+    transform: translateY(-50%) rotate(-95deg);
+  }
+
+  .particle-right {
+    right: -20px;
+    top: 30%;
+    transform: translateY(-50%) rotate(95deg) scaleX(-1);
+  }
+</style>
