@@ -11,70 +11,55 @@ import { ASSETS_PATHS } from '../../utils/constants';
     style="background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 50%, #d1d5db 100%);"
   >
     
-<!-- FONDO RADIAL AMARILLO (SUNBURST) SIN FILTROS -->
-<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-  <img 
-    src={ASSETS_PATHS.DECORATIVE.RADIAL_YELLOW}
-    alt="" 
-    class="w-[200vw] h-[200vh] sm:w-[150vw] sm:h-[150vh] max-w-none object-contain animate-spin-slow opacity-60 md:opacity-70"
-  />
-</div>
-    <!-- BANDERAS DECORATIVAS -->
-    <!-- Verifica que ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT realmente tenga un valor de ruta válido -->
-    {ASSETS_PATHS && ASSETS_PATHS.DECORATIVE && ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT && (
-      <div class="absolute top-2 left-2 sm:top-40 sm:left-90 z-20">
-        <img 
-          src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT}
-          alt="Bandera decorativa izquierda" 
-          class="w-20 h-auto sm:w-24 md:w-28 animate-wave-left"
-        />
-      </div>
-    )}
-    <!-- Verifica que ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT realmente tenga un valor de ruta válido -->
-    {ASSETS_PATHS && ASSETS_PATHS.DECORATIVE && ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT && (
-      <div class="absolute top-2 right-2 sm:top-4 sm:right-4 z-20">
-        <img 
-          src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT}
-          alt="Bandera decorativa derecha" 
-          class="w-20 h-auto sm:w-24 md:w-28 animate-wave-right"
-        />
-      </div>
-    )}
+    <!-- FONDO RADIAL AMARILLO (SUNBURST) SIN FILTROS -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+      <img 
+        src={ASSETS_PATHS.DECORATIVE.RADIAL_YELLOW}
+        alt="" 
+        class="w-[200vw] h-[200vh] sm:w-[150vw] sm:h-[150vh] max-w-none object-contain animate-spin-slow opacity-60 md:opacity-70"
+      />
+    </div>
+    
+<!-- BANDERAS DECORATIVAS -->
+{ASSETS_PATHS && ASSETS_PATHS.DECORATIVE && ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT && (
+ <div class="absolute -top-8 -left-8 z-20">
+   <img 
+     src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_LEFT}
+     alt="Bandera decorativa izquierda" 
+     class="w-48 h-auto sm:w-56 md:w-64 animate-wave-left"
+   />
+ </div>
+)}
+
+{ASSETS_PATHS && ASSETS_PATHS.DECORATIVE && ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT && (
+ <div class="absolute -top-8 -right-8 z-20">
+   <img 
+     src={ASSETS_PATHS.DECORATIVE.FLAG_BLUE_RIGHT}
+     alt="Bandera decorativa derecha" 
+     class="w-48 h-auto sm:w-56 md:w-64 animate-wave-right"
+   />
+ </div>
+)}
 
     <!-- Contenido Principal (Título y Carrusel) -->
     <div class="relative z-10 h-full flex flex-col justify-around pt-12 pb-6 px-4">
-      
-      <!-- Título -->
-      <div class="text-center mb-2 md:mb-4">
-        <div 
-          class="relative mx-auto"
-          style="width: clamp(280px, 90vw, 349px);"
-        >
-          <h1 
-            class="font-black leading-tight text-center"
-            style="
-              font-family: sans-serif;
-              font-size: clamp(30px, 8vw, 38px);
-              line-height: 1.1;
-              color: #003399;
-              text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-              margin: 0;
-              padding: 0;
-            "
-          >
-            ELIGE EL<br />
-            <span 
-              style="
-                font-family: sans-serif;
-                color: #FFD700;
-                text-shadow: 2px 2px 0px #D97706, 4px 4px 5px rgba(0,0,0,0.35);
-              "
-            >
-              MOTOCARRO PA' TI
-            </span>
-          </h1>
-        </div>
-      </div>
+
+      <!-- Título como IMAGEN -->
+<div class="text-center mb-2 md:mb-4" style="margin-top: 100px;">
+ <div class="relative mx-auto flex justify-center">
+   <img 
+     src="/assets/decorative/elige-motocarro.png"
+     alt="Elige el Motocarro Pa' Ti"
+     class="title-image"
+     style="
+       width: clamp(280px, 90vw, 400px);
+       height: auto;
+       object-fit: contain;
+       filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+     "
+   />
+ </div>
+</div>
 
       <!-- Componente del Carrusel -->
       <div class="flex-1 flex flex-col items-center justify-center min-h-0 py-2">
@@ -83,3 +68,48 @@ import { ASSETS_PATHS } from '../../utils/constants';
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  /* Animación opcional para la imagen del título */
+  .title-image {
+    animation: titleFadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes titleFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Tamaños personalizados para las banderas más grandes */
+.w-56 {
+  width: 14rem; /* 224px */
+}
+
+.w-64 {
+  width: 16rem; /* 256px */
+}
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .title-image {
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .title-image {
+      max-width: 280px;
+    }
+    
+    /* Banderas más pequeñas en móviles muy pequeños */
+    .w-36 {
+      width: 8rem; /* 128px en lugar de 144px */
+    }
+  }
+</style>
